@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import QrScanner from 'qr-scanner';
+import { Lightbulb } from 'lucide-react';
 
 interface QRScannerProps {
   onScan: (data: string) => void;
@@ -100,13 +101,14 @@ export function QRScannerComponent({ onScan, isScanning }: QRScannerProps) {
       {scannerRef.current && (
         <button
           onClick={toggleTorch}
-          className={`absolute bottom-4 right-4 z-20 px-4 py-2 rounded-lg font-semibold transition ${
+          className={`absolute bottom-4 right-4 z-20 px-4 py-2 rounded-lg font-semibold transition flex items-center gap-2 ${
             torchActive
               ? 'bg-yellow-500 hover:bg-yellow-600 text-black'
               : 'bg-gray-700 hover:bg-gray-600 text-white'
           }`}
         >
-          {torchActive ? '💡 Flash On' : '💡 Flash Off'}
+          <Lightbulb size={20} />
+          {torchActive ? 'Flash On' : 'Flash Off'}
         </button>
       )}
 

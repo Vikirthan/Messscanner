@@ -6,6 +6,7 @@ import { addMeal, getMealsByWorker } from '@/lib/storage';
 import { Worker } from '@/lib/auth';
 import { QRScannerComponent } from '@/components/QRScanner';
 import { parseMealQRData } from '@/lib/qr-utils';
+import { QrCode, Utensils, DollarSign, CheckCircle, AlertCircle, LogOut } from 'lucide-react';
 
 export default function DashboardPage() {
   const router = useRouter();
@@ -114,8 +115,9 @@ export default function DashboardPage() {
           </div>
           <button
             onClick={handleLogout}
-            className="bg-red-500 hover:bg-red-600 px-4 py-2 rounded-lg font-semibold transition"
+            className="bg-red-500 hover:bg-red-600 px-4 py-2 rounded-lg font-semibold transition flex items-center gap-2"
           >
+            <LogOut size={20} />
             Logout
           </button>
         </div>
@@ -125,11 +127,12 @@ export default function DashboardPage() {
       <main className="max-w-6xl mx-auto p-4 py-8">
         {/* Scan Message */}
         {scanMessage && (
-          <div className={`mb-4 p-4 rounded-lg text-white text-center font-semibold ${
+          <div className={`mb-4 p-4 rounded-lg text-white text-center font-semibold flex items-center justify-center gap-2 ${
             scanMessage.includes('✓') 
               ? 'bg-green-500' 
               : 'bg-red-500'
           }`}>
+            {scanMessage.includes('✓') ? <CheckCircle size={20} /> : <AlertCircle size={20} />}
             {scanMessage}
           </div>
         )}
@@ -139,7 +142,7 @@ export default function DashboardPage() {
           <div className="lg:col-span-2 space-y-6">
             {/* Camera Scanner */}
             <div className="bg-white rounded-lg shadow-lg p-6">
-              <h3 className="text-lg font-bold text-gray-800 mb-4">📱 Scan Meal QR Code</h3>
+              <h3 className="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2"><QrCode size={24} /> Scan Meal QR Code</h3>
               <QRScannerComponent onScan={handleQRScan} isScanning={isScanning} />
               <p className="text-gray-600 text-sm mt-4 text-center">
                 Scan the QR code at the meal station to register your meal
@@ -154,16 +157,22 @@ export default function DashboardPage() {
           <div className="space-y-4">
             {/* Total Meals */}
             <div className="bg-white rounded-lg shadow p-6">
-              <p className="text-gray-600 font-semibold">Total Meals</p>
+              <div className="flex items-center gap-2 text-gray-600 font-semibold">
+                <Utensils size={20} />
+                Total Meals
+              </div>
               <p className="text-5xl font-bold text-blue-600 mt-2">{mealCount}</p>
               <p className="text-gray-500 text-sm mt-2">This Month</p>
             </div>
 
             {/* Total Deduction */}
             <div className="bg-white rounded-lg shadow p-6">
-              <p className="text-gray-600 font-semibold">Total Deduction</p>
+              <div className="flex items-center gap-2 text-gray-600 font-semibold">
+                <DollarSign size={20} />
+                Total Deduction
+              </div>
               <p className="text-5xl font-bold text-red-600 mt-2">Rs {totalDeduction}</p>
-              <p className="text-gray-500 text-sm mt-2">@ Rs 22/meal</p>
+              <p className="text-gray-500 text-sm mt-2">@ Rs 22 per meal</p>
             </div>
 
             {/* Last Meal */}

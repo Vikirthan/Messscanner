@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { getMealCountByWorker, clearAllMeals } from '@/lib/storage';
 import { getAllWorkers, Worker } from '@/lib/auth';
+import { Download, Trash2, ChevronLeft, ChevronRight, DollarSign, Users, Utensils, LogOut } from 'lucide-react';
 
 export default function AdminDashboard() {
   const router = useRouter();
@@ -89,9 +90,9 @@ export default function AdminDashboard() {
             <div className="flex items-center gap-4">
               <button
                 onClick={handlePrevMonth}
-                className="bg-gray-200 hover:bg-gray-300 px-4 py-2 rounded-lg font-semibold transition"
+                className="bg-gray-200 hover:bg-gray-300 px-4 py-2 rounded-lg font-semibold transition flex items-center gap-2"
               >
-                ← Previous
+                <ChevronLeft size={20} /> Previous
               </button>
 
               <div className="text-center px-6">
@@ -101,9 +102,9 @@ export default function AdminDashboard() {
 
               <button
                 onClick={handleNextMonth}
-                className="bg-gray-200 hover:bg-gray-300 px-4 py-2 rounded-lg font-semibold transition"
+                className="bg-gray-200 hover:bg-gray-300 px-4 py-2 rounded-lg font-semibold transition flex items-center gap-2"
               >
-                Next →
+                Next <ChevronRight size={20} />
               </button>
 
               <button
@@ -117,15 +118,15 @@ export default function AdminDashboard() {
             <div className="flex gap-2">
               <button
                 onClick={handleExport}
-                className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg font-semibold transition"
+                className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg font-semibold transition flex items-center gap-2"
               >
-                📥 Export CSV
+                <Download size={20} /> Export CSV
               </button>
               <button
                 onClick={handleClearData}
-                className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg font-semibold transition"
+                className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg font-semibold transition flex items-center gap-2"
               >
-                🗑️ Clear Data
+                <Trash2 size={20} /> Clear Data
               </button>
             </div>
           </div>
@@ -134,17 +135,26 @@ export default function AdminDashboard() {
         {/* Summary Stats */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
           <div className="bg-white rounded-lg shadow p-6">
-            <p className="text-gray-600 font-semibold">Total Workers</p>
+            <div className="flex items-center gap-2 text-gray-600 font-semibold">
+              <Users size={20} />
+              Total Workers
+            </div>
             <p className="text-4xl font-bold text-blue-600 mt-2">{workers.length}</p>
           </div>
 
           <div className="bg-white rounded-lg shadow p-6">
-            <p className="text-gray-600 font-semibold">Total Meals</p>
+            <div className="flex items-center gap-2 text-gray-600 font-semibold">
+              <Utensils size={20} />
+              Total Meals
+            </div>
             <p className="text-4xl font-bold text-green-600 mt-2">{totalMeals}</p>
           </div>
 
           <div className="bg-white rounded-lg shadow p-6">
-            <p className="text-gray-600 font-semibold">Total Deduction</p>
+            <div className="flex items-center gap-2 text-gray-600 font-semibold">
+              <DollarSign size={20} />
+              Total Deduction
+            </div>
             <p className="text-4xl font-bold text-red-600 mt-2">Rs {totalDeduction}</p>
           </div>
         </div>

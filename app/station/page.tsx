@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { getQRCodeURL } from '@/lib/qr-utils';
+import { Printer, User, Utensils, DollarSign, CheckCircle } from 'lucide-react';
 
 const MEAL_STATION_QR = 'meal_station:main_gate';
 
@@ -26,9 +27,9 @@ export default function MealStationPage() {
         <p className="text-gray-600 mt-2">Print this page and display at the meal station</p>
         <button
           onClick={handlePrint}
-          className="mt-4 bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-semibold"
+          className="mt-4 bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-semibold flex items-center gap-2 inline-flex"
         >
-          🖨️ Print
+          <Printer size={20} /> Print
         </button>
       </div>
 
@@ -52,18 +53,18 @@ export default function MealStationPage() {
         </div>
 
         {/* Info */}
-        <div className="border-t-4 border-black pt-8">
-          <p className="text-xl font-semibold text-gray-800 mb-4">
-            👤 Make sure you are logged in before scanning
+        <div className="border-t-4 border-black pt-8 space-y-4">
+          <p className="text-xl font-semibold text-gray-800 flex items-center gap-3 justify-center">
+            <User size={24} /> Make sure you are logged in before scanning
           </p>
-          <p className="text-lg text-gray-700 mb-2">
-            🍽️ Your meal will be recorded instantly
+          <p className="text-lg text-gray-700 flex items-center gap-3 justify-center">
+            <Utensils size={20} /> Your meal will be recorded instantly
           </p>
-          <p className="text-lg text-gray-700 mb-2">
-            💰 Rs 22 will be deducted from your salary
+          <p className="text-lg text-gray-700 flex items-center gap-3 justify-center">
+            <DollarSign size={20} /> Rs 22 will be deducted from your salary
           </p>
-          <p className="text-lg text-gray-700">
-            ✓ Check your dashboard to verify
+          <p className="text-lg text-gray-700 flex items-center gap-3 justify-center">
+            <CheckCircle size={20} /> Check your dashboard to verify
           </p>
 
           {/* Station Info */}
