@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 import { addMeal, getMealsByWorker } from '@/lib/storage';
 import { Worker } from '@/lib/auth';
 import { QRScannerComponent } from '@/components/QRScanner';
-import { parseMealQRData } from '@/lib/qr-utils';
 import { QrCode, Utensils, DollarSign, CheckCircle, AlertCircle, LogOut } from 'lucide-react';
 
 export default function DashboardPage() {
@@ -42,8 +41,8 @@ export default function DashboardPage() {
   const handleQRScan = (scannedData: string) => {
     if (cooldown) return; // Prevent duplicate scans
     
-    // Handle meal station QR code (static at meal station)
-    if (scannedData.startsWith('meal_station:')) {
+    // Only accept the meal station QR code
+    if (scannedData === 'atimotorsmessscann22') {
       recordMeal();
       setScanMessage('✓ Meal scanned successfully!');
       setCooldown(true);
@@ -52,30 +51,11 @@ export default function DashboardPage() {
       return;
     }
     
-    // Handle personal QR code (verification)
-    const mealData = parseMealQRData(scannedData);
-    
-    if (!mealData) {
-      setScanMessage('Invalid QR code');
-      setTimeout(() => setScanMessage(''), 3000);
-      return;
-    }
-
-    if (!worker || mealData.workerId !== worker.id) {
-      setScanMessage('QR code does not match your ID');
-      setTimeout(() => setScanMessage(''), 3000);
-      return;
-    }
-
-    // Record the meal
-    recordMeal();
-    setScanMessage('✓ Meal scanned successfully!');
-    
-    // Add cooldown to prevent duplicate scans
+    // Reject all other QR codes
+    setScanMessage('Invalid QR code. Please scan the meal station QR code.');
     setCooldown(true);
     setTimeout(() => setCooldown(false), 2000);
-    
-    setTimeout(() => setScanMessage(''), 2000);
+    setTimeout(() => setScanMessage(''), 3000);
   };
 
   const recordMeal = () => {

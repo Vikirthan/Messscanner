@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { getQRCodeURL } from '@/lib/qr-utils';
 import { Printer, User, Utensils, DollarSign, CheckCircle } from 'lucide-react';
 
-const MEAL_STATION_QR = 'meal_station:main_gate';
+const MEAL_STATION_QR = 'atimotorsmessscann22';
 
 export default function MealStationPage() {
   const [isReady, setIsReady] = useState(false);
