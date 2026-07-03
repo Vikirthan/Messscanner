@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 80" width="220" height="80">
+  <!-- Teal diamond/chevron shape for the A -->
+  <g transform="translate(0, 5)">
+    <!-- Left diamond half (teal) -->
+    <polygon points="22,8 38,22 22,36 6,22" fill="#1BBFB2"/>
+    <!-- Right diamond half (teal, slightly overlapping) -->
+    <polygon points="36,22 52,8 66,22 52,36" fill="#1BBFB2" opacity="0.85"/>
+    <!-- Overlap center highlight -->
+    <polygon points="36,22 52,22 44,30 28,30" fill="#14A89C"/>
+    <!-- A legs in black -->
+    <rect x="6" y="32" width="10" height="28" fill="#1A1A1A" rx="1"/>
+    <rect x="52" y="32" width="10" height="28" fill="#1A1A1A" rx="1"/>
+    <!-- A crossbar -->
+    <rect x="6" y="40" width="56" height="9" fill="#1A1A1A" rx="1"/>
+  </g>
+
+  <!-- "ti" text -->
+  <!-- t -->
+  <text x="82" y="62" font-family="Arial Black, sans-serif" font-size="52" font-weight="900" fill="#1A1A1A" letter-spacing="-2">t</text>
+  <!-- i with accent -->
+  <text x="118" y="62" font-family="Arial Black, sans-serif" font-size="52" font-weight="900" fill="#1A1A1A" letter-spacing="-2">i</text>
+  <!-- accent mark over i -->
+  <text x="127" y="20" font-family="Arial Black, sans-serif" font-size="22" font-weight="900" fill="#1A1A1A">´</text>
+</svg>
